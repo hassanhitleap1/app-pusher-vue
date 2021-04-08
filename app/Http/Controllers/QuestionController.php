@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Question;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class QuestionController extends Controller
 {
@@ -35,7 +36,8 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        auth()->user()->question->cerate($request->all());
+        return response(null,Response::HTTP_OK);
     }
 
     /**
@@ -80,6 +82,7 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        $question->delete();
+        return response(null,Response::HTTP_OK);
     }
 }
