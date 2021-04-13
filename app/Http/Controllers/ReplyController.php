@@ -9,11 +9,20 @@ use Illuminate\Http\Request;
 
 class ReplyController extends Controller
 {
+
+
     /**
-     * Display a listing of the resource.
+     * Create a new AuthController instance.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
+    public function __construct()
+    {
+        $this->middleware('JWT', ['except' => ['index','show']]);
+    }
+
+
+
     public function index(Question $question)
     {
         return $question->replies;
